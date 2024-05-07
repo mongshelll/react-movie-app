@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React</title>
+	<script src="js/react.production-18.3.1.min.js"></script>
+	<script src="js/react-dom.production-18.3.1.min.js"></script>
+	<script src="js/babel-7.24.5.min.js"></script>
+</head>
+<body>
+	<div id="root">
+
+	</div>
+	<script type="text/babel">
+		const root = document.getElementById("root");
+		let  counter = 0;
+
+		function countUp() {
+			counter = counter + 1;
+			render();
+		}
+
+		function render() {
+			ReactDOM.createRoot(root).render(<Container />);
+		}
+
+		const Container = () => (
+			<div>
+				<h3>Total Clicks: {counter}</h3>
+				<button type="button" onClick={countUp}>
+					Click Me
+				</button>
+			</div>
+		);
+
+		render();
+		// ReactDOM.createRoot(root).render(<Container />);
+	</script>
+</body>
+</html>

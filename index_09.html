@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React</title>
+	<script src="js/react.production-18.3.1.min.js"></script>
+	<script src="js/react-dom.production-18.3.1.min.js"></script>
+	<script src="js/babel-7.24.5.min.js"></script>
+</head>
+<body>
+	<div id="root">
+
+	</div>
+	<script type="text/babel">
+		function MinutesToHours() {
+			const [amount, setAmount] = React.useState(0);
+			const [inverted, setInverted] = React.useState(false);
+			const targetValueChange = (e) => {
+				setAmount(e.target.value);
+			};
+			const reset = () => setAmount(0);
+			const valueReset = () => setAmount("");
+			const onInvert = () => {
+				reset();
+				setInverted(current => !current);
+			}
+			return (
+				<div>
+					<div>
+						<label htmlFor="minutes">Minutes</label>
+						<input type="number" id="minutes" placeholder="Minutes" value={inverted ? amount * 60 : amount} onChange={targetValueChange} onFocus={valueReset} disabled={inverted} />
+					</div>
+					<div>
+						<label htmlFor="hours">Hours</label>
+						<input type="number" id="hours" placeholder="Hours" value={inverted ? amount : Math.round(amount / 60)} onChange={targetValueChange} onFocus={valueReset} disabled={!inverted} />
+					</div>
+					<button type="button" onClick={reset}>Reset</button>
+					<button type="button" onClick={onInvert}>{inverted ? "Turn back" : "Invert"}</button>
+				</div>
+			)
+		};
+		
+		function KilometerToMile() {
+			return (
+				<div>
+					<h3>Kilometer To Mile</h3>
+				</div>
+			)
+		}
+		
+		function App() {
+			const [index, setIndex] = React.useState("init");
+			const onSelect = (e) => {
+				setIndex(e.target.value);
+			}
+			return (
+				<div>
+					<h1>Super Converter</h1>
+
+					<select value={index} onChange={onSelect}>
+						<option value="init" selected disabled>선택하세요</option>
+						<option value="0">Minutes & Hours</option>
+						<option value="1">Kilometer & Mile</option>
+					</select>
+
+					{index === "init" ? `변환기를 선택하세요` : null}
+					{index === "0" ? <MinutesToHours /> : null }
+					{index === "1" ? <KilometerToMile /> : null }
+
+
+					{/*<MinutesToHours />
+					<KilometerToMile /> */}
+				</div>
+			)
+		};
+		const root = document.getElementById("root");
+		ReactDOM.createRoot(root).render(<App />);
+	</script>
+</body>
+</html>

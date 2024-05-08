@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React</title>
+	<script src="js/react.production-18.3.1.min.js"></script>
+	<script src="js/react-dom.production-18.3.1.min.js"></script>
+	<script src="js/babel-7.24.5.min.js"></script>
+</head>
+<body>
+	<div id="root">
+
+	</div>
+	<script type="text/babel">
+
+		// const Btn = (props) => (
+		const Btn = ({btnText, changrValue}) => (
+			console.log(btnText,"was rendered"),
+			<button
+				onClick={changrValue}
+				type="button"
+				style={{
+					backgroundColor: "tomato",
+					color: "#fff",
+					padding: "10px 20px",
+					border: "none",
+					borderRadius: "10px",
+					cursor: "pointer"
+				}}
+			>
+			{btnText}
+			</button>
+		)
+
+
+
+		function App() {
+			const [value, setValue] = React.useState("Save Changes")
+			const changrValue = () => setValue("Revert Changes")
+			return (
+				<div>
+					<Btn btnText={value} changrValue={changrValue} />
+					<Btn btnText="Continue" />
+				</div>
+			)
+		};
+		const root = document.getElementById("root");
+		ReactDOM.createRoot(root).render(<App />);
+	</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React</title>
+	<!-- <script src="js/react.production-18.3.1.min.js"></script> -->
+	<!-- <script src="js/react.development-18.3.1.js"></script>
+	<script src="js/react-dom.production-18.3.1.min.js"></script> -->
+	<script src="js/react.development-17.0.2.js"></script>
+	<script src="js/react-dom.production-17.0.2.min.js"></script>
+	<script src="js/prop-types15.8.1.min.js"></script>
+	<script src="js/babel-7.24.5.min.js"></script>
+</head>
+<body>
+	<div id="root">
+
+	</div>
+	<script type="text/babel">
+
+		const Btn = ({btnText, fontSize}) => (
+			<button
+				type="button"
+				style={{
+					backgroundColor: "tomato",
+					color: "#fff",
+					padding: "10px 20px",
+					border: "none",
+					borderRadius: "10px",
+					cursor: "pointer",
+					fontSize,
+				}}
+			>
+				{btnText}
+			</button>
+		)
+
+		Btn.propTypes = {
+			btnText: PropTypes.string,
+			fontSize: PropTypes.number,
+		}
+
+		function App() {
+			return (
+				<div>
+					<Btn btnText="Save Changes" fontSize={18} />
+					<Btn btnText={14} fontSize={"Continue"} />
+				</div>
+			)
+		};
+		const root = document.getElementById("root");
+		ReactDOM.render(<App />, root);
+		// ReactDOM.createRoot(root).render(<App />);
+	</script>
+</body>
+</html>
